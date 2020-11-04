@@ -1,21 +1,18 @@
-SRC=Chaine.cpp tests_catch.cpp main_test.cpp Vecteur.cpp
-#SRC=$(wildcard *.cpp)  
-EXE=cpp5
+SRC=tests_catch.cpp main_test.cpp Vecteur.cpp Chaine.cpp
+EXE = cpp5
+CXX = g++
 
-CXXFLAGS+=-Wall -Wextra -MMD -g -O2
-LDFLAGS= 
+CXXFLAGS = -Wall -Wextra -g -O2 -MMD
+LDFLAGS =
 
 OBJ=$(addprefix build/,$(SRC:.cpp=.o))
-DEP=$(addprefix build/,$(SRC:.cpp=.d))
 
-all: $(OBJ)
+all : $(OBJ)
 	$(CXX) -o $(EXE) $^ $(LDFLAGS)
 
-build/%.o: %.cpp
+build/%.o : %.cpp
 	@mkdir -p build
 	$(CXX) $(CXXFLAGS) -o $@ -c $<
 
-clean:
-	rm -rf build core *.gch
-
--include $(DEP)
+clean :
+	rm -rf build cpp5

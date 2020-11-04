@@ -24,6 +24,11 @@ class Chaine  {
         const Chaine& operator=(const Chaine& s2);
         char& operator[](int);
         const char& operator[](int) const;
+
+        class OutOfRangeException : public std::exception
+        {
+            virtual const char * what() const noexcept;
+        };
 };
 
 #endif

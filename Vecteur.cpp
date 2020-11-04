@@ -31,19 +31,20 @@ int Vecteur::size() const
 
 void Vecteur::push_back(double x)
 {
-    if (size() == capacity())
+    if (size() == capacity()) //si saturé alors ...
     {
         capa *= 2;
 
         double * temp_tableau = new double[capa];
         memcpy(temp_tableau, tableau, size()*sizeof(double));
+        //size()*sizeof(double) : nombre de bytes à copier
 
         delete [] tableau;
         tableau = temp_tableau;
     }
     
-    tableau[size()] = x;
-    ++s;
+    tableau[size()] = x; //on insère l'élement
+    ++s; // on incrémente la taille du vecteur
 }
 
 double Vecteur::operator[](int index) const

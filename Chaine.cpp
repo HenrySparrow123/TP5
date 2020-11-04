@@ -79,10 +79,17 @@ const Chaine& Chaine::operator=(const Chaine& s2)
 
 char& Chaine::operator[](int index)
 {
-    return this->c_string[index];
+    if ( index < 0) throw (Chaine::OutOfRangeException());
+    else if ( index >= capa) throw (std::bad_alloc());
+    else return this->c_string[index];
 }
 
 const char& Chaine::operator[](int index) const
 {
     return this->c_string[index];
+}
+
+const char * Chaine::OutOfRangeException::what() const noexcept
+{
+    return "Hors domaine.";
 }
